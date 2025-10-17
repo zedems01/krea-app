@@ -1,9 +1,9 @@
 pipeline {
   agent any
   stages {
-    stage('Checkout code') {
+    stage('checkout') {
       steps {
-        git(url: 'https://github.com/zedems01/krea-app', branch: 'test-jenkins')
+        git(url: 'https://github.com/zedems01/krea-app', branch: 'main')
       }
     }
 
