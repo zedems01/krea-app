@@ -1,9 +1,21 @@
 pipeline {
   agent any
   stages {
-    stage('checkout') {
+    stage('Build') {
       steps {
-        git(url: 'https://github.com/zedems01/krea-app', branch: 'main')
+        echo 'Building...'
+      }
+    }
+
+    stage('Test') {
+      steps {
+        echo 'Testing...'
+      }
+    }
+
+    stage('Deploy') {
+      steps {
+        echo 'Deploying'
       }
     }
 
