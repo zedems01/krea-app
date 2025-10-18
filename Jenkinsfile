@@ -11,7 +11,8 @@ pipeline {
         stage('Checkout') {
             steps {
                 checkout scm
-                echo "✅ Code récupéré depuis ${env.GIT_URL}"
+                echo "WEBHOOK ACTIVATED"
+                echo "✅ Code récupéré depuis ${env.GIT_URL}; push avec pseudo-WEBHOOK"
             }
         }
         
