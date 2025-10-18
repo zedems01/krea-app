@@ -15,42 +15,42 @@ pipeline {
     }
     
     stages {
-        // stage('Checkout') {
-        //     steps {
-        //         checkout scm
-        //         echo "✅ Code récupéré depuis ${env.GIT_URL}"
-        //     }
-        // }
+        stage('Checkout') {
+            steps {
+                checkout scm
+                echo "✅ Code récupéré depuis ${env.GIT_URL}"
+            }
+        }
         
-        // stage('Install Dependencies') {
-        //     steps {
-        //         sh '''
-        //             echo "Installation des dépendances Python..."
-        //             python3 -m venv venv
-        //             . venv/bin/activate
-        //             python3 -m pip install --upgrade pip
-        //             pip3 install -r requirements.txt
-        //             python3 -c "import requests; print('✅ Package requests importable')"
-        //         '''
-        //     }
-        // }
+        stage('Install Dependencies') {
+            steps {
+                sh '''
+                    echo "Installation des dépendances Python..."
+                    python3 -m venv venv
+                    . venv/bin/activate
+                    python3 -m pip install --upgrade pip
+                    pip3 install -r requirements.txt
+                    python3 -c "import requests; print('✅ Package requests importable')"
+                '''
+            }
+        }
         
-        // stage('Tests') {
-        //     steps {
-        //         sh '''
-        //             echo "Exécution des tests..."
-        //             . venv/bin/activate
-        //             # Exemple de commande de test
-        //             python3 -m pytest tests/ || echo "Aucun test trouvé, continuation..."
-        //             echo "✅ Tests exécutés avec succès"
-        //         '''
-        //     }
-        //     post {
-        //         always {
-        //             echo "✅ Tests terminés avec succès"
-        //         }
-        //     }
-        // }
+        stage('Tests') {
+            steps {
+                sh '''
+                    echo "Exécution des tests..."
+                    . venv/bin/activate
+                    # Exemple de commande de test
+                    python3 -m pytest tests/ || echo "Aucun test trouvé, continuation..."
+                    echo "✅ Tests exécutés avec succès"
+                '''
+            }
+            post {
+                always {
+                    echo "✅ Tests terminés avec succès"
+                }
+            }
+        }
         stage('Check Docker Setup') {
             steps {
                 sh '''
