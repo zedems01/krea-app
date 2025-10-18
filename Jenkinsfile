@@ -19,9 +19,9 @@ pipeline {
             steps {
                 sh '''
                     echo "Installation des dépendances Python..."
-                    python3 -m pip install --upgrade pip
                     python3 -m venv venv
                     . venv/bin/activate
+                    python3 -m pip install --upgrade pip
                     pip3 install requests
                     python3 -c "import requests; print('✅ Package requests importable')"
                 '''
