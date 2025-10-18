@@ -1,17 +1,18 @@
 pipeline {
-    agent {
-        docker {
-            image 'docker:24.0-dind'
-            args '--privileged --name dind-daemon'
-        }
-    }
+    // agent {
+    //     docker {
+    //         image 'docker:24.0-dind'
+    //         args '--privileged --name dind-daemon'
+    //     }
+    // }
+    agent any
     
     environment {
         PROJECT_NAME = 'Krea App'
         PYTHON_VERSION = '3.13'
         DOCKER_IMAGE = 'zedems/krea-app'
         DOCKER_REGISTRY = 'https://registry.hub.docker.com'
-        DOCKER_HOST = 'tcp://localhost:2375'
+        // DOCKER_HOST = 'tcp://localhost:2375'
     }
     
     stages {
