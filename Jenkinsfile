@@ -51,6 +51,17 @@ pipeline {
         //         }
         //     }
         // }
+        stage('Check Docker Setup') {
+            steps {
+                sh '''
+                    echo "🔍 Vérification Docker..."
+                    echo "Socket Docker:"
+                    ls -la /var/run/docker.sock 2>/dev/null || echo "❌ Socket non accessible"
+                    echo "Docker info:"
+                    docker info 2>/dev/null || echo "❌ Docker non accessible"
+                '''
+            }
+        }
         
         stage('Build Docker Image') {
             steps {
