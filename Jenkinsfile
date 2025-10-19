@@ -96,9 +96,6 @@ pipeline {
         }
         
         stage('Push to Docker Hub') {
-            when {
-                branch 'main'
-            }
             steps {
                 script {
                     echo "🚀 Push vers Docker Hub..."
@@ -125,9 +122,6 @@ pipeline {
         }
         
         stage('Deploy') {
-            when {
-                branch 'main'
-            }
             steps {
                 echo "🚀 Déploiement en production..."
                 script {
