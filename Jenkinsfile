@@ -1,10 +1,4 @@
 pipeline {
-    // agent {
-    //     docker {
-    //         image 'docker:24.0-dind'
-    //         args '--privileged --name dind-daemon'
-    //     }
-    // }
     agent any
     
     environment {
@@ -12,7 +6,6 @@ pipeline {
         PYTHON_VERSION = '3.13'
         DOCKER_IMAGE = 'zedems/krea-app'
         DOCKER_REGISTRY = 'https://registry.hub.docker.com'
-        // DOCKER_HOST = 'tcp://localhost:2375'
     }
     
     stages {
@@ -102,7 +95,7 @@ pipeline {
                     
                     // Authentification à Docker Hub (à configurer dans Jenkins)
                     withCredentials([usernamePassword(
-                        credentialsId: 'docker-hub-credential',
+                        credentialsId: 'docker-hub-credentials',
                         usernameVariable: 'DOCKER_USERNAME',
                         passwordVariable: 'DOCKER_PASSWORD'
                     )]) {
