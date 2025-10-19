@@ -69,7 +69,13 @@ pipeline {
                     
                     // Build de l'image Docker
                     // sh "docker build -t ${imageTag} -t ${imageLatest} ."
-                    sh "docker buildx build -t ${imageTag} -t ${imageLatest} --load ."
+                    // Build de l'image Docker avec buildx
+                    sh """
+                        docker buildx build \
+                            --tag ${imageTag} \
+                            --tag ${imageLatest} \
+                            --load .
+                    """
                     
                     // Sauvegarder les tags pour les stages suivants
                     env.DOCKER_IMAGE_TAG = imageTag
