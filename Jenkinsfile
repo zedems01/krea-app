@@ -68,7 +68,8 @@ pipeline {
                     echo "🐳 Construction de l'image Docker: ${imageTag}"
                     
                     // Build de l'image Docker
-                    sh "docker build -t ${imageTag} -t ${imageLatest} ."
+                    // sh "docker build -t ${imageTag} -t ${imageLatest} ."
+                    sh "docker buildx build -t ${imageTag} -t ${imageLatest} --load ."
                     
                     // Sauvegarder les tags pour les stages suivants
                     env.DOCKER_IMAGE_TAG = imageTag
@@ -100,7 +101,8 @@ pipeline {
                         passwordVariable: 'DOCKER_PASSWORD'
                     )]) {
                         sh """
-                            docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
+                            // docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
+                            echo "\${DOCKER_PASSWORD}" | docker login -u "\${DOCKER_USERNAME}" --password-stdin
                             docker push ${env.DOCKER_IMAGE_TAG}
                             docker push ${env.DOCKER_IMAGE_LATEST}
                             docker logout
