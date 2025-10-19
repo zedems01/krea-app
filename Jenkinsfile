@@ -72,6 +72,7 @@ pipeline {
                     // Build de l'image Docker avec buildx
                     sh """
                         docker buildx build \
+                            --platform linux/amd64 \
                             --tag ${imageTag} \
                             --tag ${imageLatest} \
                             --load .
